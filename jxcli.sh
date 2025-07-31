@@ -46,13 +46,12 @@ function start_process() {
     else
         echo "Khởi động $name..."
         cd "$path" || exit
+        chmod +x "./$cmd"
 
         if [[ "$name" == "S3Relay" || "$name" == "GameServer" ]]; then
-            session_name="jx_${name,,}"  # tên phiên tmux: jx_s3relay hoặc jx_gameserver
-            chmod +x "./$cmd"
-            tmux new-session -d -s "$session_name" "./$cmd"
-            echo "$name đã được mở trong cửa sổ tmux [$session_name]."
-            echo "Dùng: tmux attach -t $session_name  để xem log"
+            # Hiện log trực tiếp trong cửa sổ GUI mới
+            xfce4-terminal --title="$name Log" --hold --command="./$cmd" &
+            echo "$name đã được mở trong cửa sổ terminal GUI."
         else
             nohup ./"$cmd" > /dev/null 2>&1 &
             log "Started $name"
