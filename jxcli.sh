@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GAMEPATH=${GAMEPATH:-/home/jxser}
+GAMEPATH=${GAMEPATH:-/home/jxser_6_bachkim}
 PAYSETUP_PATH="/root/serversetup/paysyswin"
 LOG_FILE="/var/log/jxserver.log"
 
